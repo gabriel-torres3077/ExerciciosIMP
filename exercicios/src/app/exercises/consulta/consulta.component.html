@@ -1,0 +1,16 @@
+3 - Consuma o webservice dos correios passando um CEP qualquer e mostre
+em tela o endereço que o mesmo retornar. Endereço:
+https://apps.correios.com.br/SigepMasterJPA/AtendeClienteService/AtendeClie
+nte?wsdl
+<br>
+<form [formGroup]="form" (ngSubmit)="checkAdress()" style="margin-top: 20px;">
+    <label for="cep">CEP:
+        <input formControlName="cep" name="cep" id="cep" required pattern="\d{5}-\d{3}" />
+    </label><br>
+    <button class="btn btn-success" type="submit">Buscar endereço</button>
+</form>
+
+<div class="endereco" style="margin-top: 20px;">
+        <h3 class="text-success">{{ endereco.cep }} | {{ endereco?.logradouro }}, {{ endereco.bairro }}. {{ endereco.localidade }} - {{ endereco.uf}}</h3>
+
+</div>

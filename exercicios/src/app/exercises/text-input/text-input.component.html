@@ -1,0 +1,43 @@
+<div class="title">
+    <h4>
+        <p>
+            1 - Crie uma aplicação que permita a digitação de números e mostre esses
+            números em tela de forma ordenada. Ou seja, desenvolver uma lógica que
+            deverá permitir a inclusão de n números em qualquer sequência e em seguida
+            exibi-los em ordem crescente.;
+            <br/>
+            2 - Disponibilize uma opção de gravar os números visualizados em um
+            arquivo txt. De preferência em formato JSON;
+            
+        </p>
+    </h4>
+</div>
+<form [formGroup]="form" (submit)="onSubmit()" novalidate>
+    <div>
+        <mat-form-field class="example-chip-list" appearance="fill">
+            <mat-label>Números</mat-label>
+            <mat-chip-list #chipList aria-label="Numeros selection">
+                <mat-chip color="secondary" *ngFor="let n of numbersArray; let i = index" (removed)="remove(i)">
+                    {{n}}
+                    <button matChipRemove>
+                        <mat-icon>cancel</mat-icon>
+                    </button>
+                </mat-chip>
+                <input
+                    type="number"
+                    formControlName="numberTextArea"
+                    id="numbers" 
+                    class="mat-input form-control"
+                    placeholder="Novo número"
+                    [matChipInputFor]="chipList"
+                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                    [matChipInputAddOnBlur]="addOnBlur"
+                    (matChipInputTokenEnd)="add($event)">
+            </mat-chip-list>
+        </mat-form-field>
+    </div>
+    
+    <br>
+    <button class="btn btn-success" type="button" (click)="onSubmit()">Baixar lista</button>
+    <a hidden="true" id="download-link" [href]="fileURL" download="numeros.txt"></a>
+</form>
