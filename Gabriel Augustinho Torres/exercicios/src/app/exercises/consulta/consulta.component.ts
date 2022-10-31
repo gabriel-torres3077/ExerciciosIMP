@@ -40,10 +40,12 @@ export class ConsultaComponent implements OnInit {
           console.log(res)
           this.endereco = res,
           this.show = true;    
-          window.alert('Pesquisa realizada com sucesso')    
+          window.alert('Pesquisa realizada com sucesso') 
+          return true;   
         }
       );
+    } else {
+      window.alert('O CEP informado é inválido, verifique se existe algum simbolo ou letra');
     }
-    window.alert('O CEP informado é inválido, verifique se existe algum simbolo ou letra')
   }
 }
